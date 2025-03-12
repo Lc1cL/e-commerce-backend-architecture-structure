@@ -8,6 +8,9 @@ const configDatabase = DB_URL
   ? {
       type: 'postgres',
       url: DB_URL,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT,
+      name: process.env.DB_USERNAME,
       synchronize: true,
       logging: false,
       dropSchema: false,
@@ -27,11 +30,11 @@ const configDatabase = DB_URL
   : {
       type: 'postgres',
       database: process.env.DB_NAME,
-      // host: process.env.DB_HOST,
-      host: 'postgresdb',
-      port: process.env.DB_PORT,
+      // host: process.env.DB_HOST, //local
+      host: 'postgresdb', //docker
+      port: process.env.DB_PORT_LOCAL,
       username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
+      password: process.env.DB_PASSWORD_LOCAL,
       synchronize: true,
       logging: false,
       dropSchema: false,
@@ -39,6 +42,7 @@ const configDatabase = DB_URL
       migrations: ['dist/migrations/*{.js,.ts}'],
     };
 
+    
 export default registerAs('typeorm', () => configDatabase);
 export const connectionSource = new DataSource(
   configDatabase as DataSourceOptions,
