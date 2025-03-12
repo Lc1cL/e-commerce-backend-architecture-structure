@@ -15,15 +15,17 @@ export class ProductsController {
     @Get()
     @HttpCode(200)
     @ApiOperation({summary: 'Get all products'})
-    @ApiQuery({name: 'limit', required: false})
-    @ApiQuery({name: 'page', required: false})
+    @ApiQuery({name: 'limit', required: false, description: 'Limit number of products per page',  schema: { default: 5 }})
+    @ApiQuery({name: 'page', required: false, description: 'Page displayed from list of products ', schema: { default: 1 }})
     async getProducts(@Query('page') page?:string, @Query('limit') limit?:string){
         return await this.productsService.getProducts(Number(page),Number(limit))
     }
 
     @HttpCode(201)
+    @Roles(Role.Admin)
+    @UseGuards(Auth2Guard, RolesGuard)
     @Get('seeder')
-    @ApiOperation({summary: 'Add products', description: 'Add products to the database. Automatically called when the server starts'})
+    @ApiOperation({summary: 'Add products', description: 'Add products to the database. Automatically called when the server starts. [ADMIN ONLY]'})
     async addProducts() {
         return await this.productsService.addProduct();
     }
@@ -39,7 +41,7 @@ export class ProductsController {
     @ApiBearerAuth()
     @HttpCode(200)
     @Put(':id')
-    @ApiOperation({summary: 'Update product'})
+    @ApiOperation({summary: 'Update product [ADMIN ONLY]'})
     @ApiParam({name: 'id', type: String, description:'Product id'})
     @Roles(Role.Admin)
     @UseGuards(Auth2Guard, RolesGuard)
@@ -50,7 +52,7 @@ export class ProductsController {
     @ApiBearerAuth()
     @HttpCode(200)
     @Delete(':id')
-    @ApiOperation({summary: 'Delete product by id'})
+    @ApiOperation({summary: 'Delete product by id [ADMIN ONLY]'})
     @ApiParam({name: 'id', type: String, description:'Product id'})
     @Roles(Role.Admin)
     @UseGuards(Auth2Guard, RolesGuard)
@@ -60,7 +62,7 @@ export class ProductsController {
 
     @ApiBearerAuth()
     @Delete()
-    @ApiOperation({summary: 'Delete all products'})
+    @ApiOperation({summary: 'Delete all products [ADMIN ONLY]'})
     @Roles(Role.Admin)
     @UseGuards(Auth2Guard, RolesGuard)
     async DeletProducts(){

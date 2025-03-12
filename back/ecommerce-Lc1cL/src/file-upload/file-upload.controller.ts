@@ -38,7 +38,7 @@ export class FileUploadController {
         file: {
           type: 'string',
           format: 'binary',
-          description: 'Archivo a subir',
+          description: 'Uploading file',
         },
       },
     },

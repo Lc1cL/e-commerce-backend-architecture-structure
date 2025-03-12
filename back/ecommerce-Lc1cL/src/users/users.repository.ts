@@ -47,7 +47,7 @@ export class UserRepository {
     }
   }
 
-  async createUser(user: Partial<User>) {
+  async createUser(user: any) {
     try {
       const dateUser = user.birthdate ? new Date(user.birthdate) : null;
 
@@ -56,7 +56,7 @@ export class UserRepository {
         ...user,
       });
 
-      const { password, isAdmin, ...userNoPass } = newUser;
+      const { password, confirmPassword, isAdmin, ...userNoPass } = newUser;
       return userNoPass;
     } catch (error) {
       console.error('Error in createUser:', error);

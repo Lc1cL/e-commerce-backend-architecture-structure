@@ -30,7 +30,7 @@ export class RolesGuard implements CanActivate {
 
     if (!valid) {
       throw new ForbiddenException(
-        'You do not have permission an are not allowed to access this rout',
+        'Administrator permissions are required to access this feature.',
       );
     }
 

@@ -29,29 +29,34 @@ export class User {
   password: string;
 
   @Column({
-    type: 'bigint'
+    type: 'bigint',
+    nullable: true
   })
   phone: number;
 
   @Column({
-    type: 'text'
+    type: 'text',
+    nullable: true
   })
   address: string;
 
   @Column({
     type:'varchar',
-    length:50
+    length:50,
+    nullable: true
   })
   country: string;
 
   @Column({
     type:'varchar',
-    length: 50
+    length: 50,
+    nullable: true
   })
   city: string;
 
   @Column({
-    type: Date
+    type: Date,
+    nullable: true
   })
   birthdate: Date;
 

@@ -14,13 +14,8 @@ import {
   Validate,
 } from 'class-validator';
 import { MatchPassword } from 'src/decorators/matchPassword.decorator';
-import { Order } from 'src/entities/orders.entity';
 
 export class CreateUserDto {
-  @IsOptional()
-  @ApiProperty({ description: 'UUID asigando por la DB' })
-  id: string;
-
   @IsNotEmpty()
   @IsString()
   @MinLength(3)
@@ -59,7 +54,7 @@ export class CreateUserDto {
   })
   confirmPassword: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @MinLength(3)
   @MaxLength(50)
@@ -69,7 +64,7 @@ export class CreateUserDto {
   })
   address: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumber()
   @ApiProperty({
     description: 'User phone, number with no spaces',
@@ -77,44 +72,28 @@ export class CreateUserDto {
   })
   phone: number;
 
-  @IsNotEmpty()
+  @IsOptional()
   @MinLength(4)
   @MaxLength(50)
   @ApiProperty({
     description: 'User country, must be at least 4 characters long and 20 max ',
-    example: ' Example country',
+    example: 'Example country',
   })
   country: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @MinLength(5)
   @MaxLength(50)
   @ApiProperty({
     description: 'User city, must be at least 5 characters long and 20 max ',
-    example: ' Example city',
+    example: 'Example city',
   })
   city: string;
 
-  @IsEmpty()
-  @ApiProperty({
-    description:
-      'Authorization to admin privilegies, not submitable by user. Set to false by default',
-    example: false,
-  })
-  isAdmin?: boolean;
-
-  @IsNotEmpty()
-  @ApiProperty()
-  birthdate: Date;
-
   @IsOptional()
-  @IsArray()
-  @ApiProperty({
-    description:
-      ' Array of orderd done by user. Empty by default until users begins and order',
-  })
-  orders: Partial<Order[]>;
+  @ApiProperty()
+  birthdate?: Date;
 }
 
 export class UpdateUserDto {
@@ -175,7 +154,7 @@ export class UpdateUserDto {
   @ApiProperty({
     description:
       'Updated user city, must be at least 5 characters long and 20 max ',
-    example: ' Updated city',
+    example: 'Updated city',
   })
   city: String;
 }
