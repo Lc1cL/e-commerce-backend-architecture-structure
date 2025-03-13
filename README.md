@@ -25,8 +25,8 @@ Este proyecto es una estructura de backend para una plataforma de e-commerce des
 
 ### 1️⃣ Clonar el repositorio
 ```bash
- git clone https://github.com/tu_usuario/tu_repositorio.git
- cd tu_repositorio
+git clone https://github.com/Lc1cL/e-commerce-backend-architecture-structure.git
+cd e-commerce-backend-architecture-structure
 ```
 
 ### 2️⃣ Instalar dependencias
