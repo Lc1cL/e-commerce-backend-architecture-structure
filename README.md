@@ -86,20 +86,31 @@ Allí podrás ver todos los 🔗 endpoints disponibles, sus 📋 descripciones y
 Todos los endpoints están documentados en Swagger, pero aquí tienes un resumen de los más importantes:
 
 - **🔑 Autenticación**
-  - `POST /auth/login` - Iniciar sesión
-  - `POST /auth/register` - Registrar usuario
+  - `POST /auth/signin` - Iniciar sesión
+  - `POST /auth/signup` - Registrar usuario
 
 - **🛍️ Productos**
   - `GET /products` - Obtener productos
-  - `POST /products` - Crear un producto (Admin)
+  - `GET /products/:id` - Obtener producto por id delproducto
+  - `GET /products/seeder` - Activa el seeder de productos (Admin)
+  - `PUT /users/:id` - Actualizar información de un producto por su id (Admin)
+  - `DELETE /users/:id` - Eliminar todos los productos (Admin)
+  - `DELETE /users/:id` - Eliminar información de un producto por su id (Admin)
 
 - **📦 Órdenes**
-  - `GET /orders` - Obtener órdenes del usuario
+  - `GET /orders/:id` - Obtener órden del usuario por id de órden
   - `POST /orders` - Crear una nueva orden
 
 - **👤 Usuarios**
   - `GET /users` - Obtener información de usuarios (Admin)
-
+  - `GET /users/:id` - Obtener información de un usuario por su id
+  - `PUT /users/:id` - Actualizar información de un usuario por su id
+  - `DELETE /users/:id` - Eliminar información de un usuario por su id
+- **🗃️ Categorias**
+  - `GET /categories` - Obtener todas las categorias disponibles
+  - `Get /catgeories/seeder`- Activa el seeder de productos (Admin)
+- **🖼️ File**
+  - `POST /files/uploadImages/:id` - Subir una imagen para un producto con id del producto
 ---
 
 ## 🚀 Despliegue
