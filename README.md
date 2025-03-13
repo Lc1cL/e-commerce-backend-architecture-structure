@@ -37,15 +37,21 @@ Este proyecto es una estructura de backend para una plataforma de e-commerce des
 ### 3️⃣ Configurar variables de entorno
 Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 ```env
-DATABASE_HOST=your_database_host
-DATABASE_PORT=your_database_port
-DATABASE_USER=your_database_user
-DATABASE_PASSWORD=your_database_password
-DATABASE_NAME=your_database_name
+PORT=your_local_port
+
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+DB_HOST=your_database_localhost
+DB_PORT=your_database_port
+
+DATABASE_URL=your_database_url
+
 CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-JWT_SECRET=your_jwt_secret
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+
+JWT_SECRET=claveSecreta
 ```
 
 ### 4️⃣ Ejecutar la aplicación en desarrollo
