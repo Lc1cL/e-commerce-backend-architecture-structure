@@ -21,11 +21,12 @@ export class ProductsController {
         return await this.productsService.getProducts(Number(page),Number(limit))
     }
 
+    @ApiBearerAuth()
     @HttpCode(201)
     @Roles(Role.Admin)
     @UseGuards(Auth2Guard, RolesGuard)
     @Get('seeder')
-    @ApiOperation({summary: 'Add products', description: 'Add products to the database. Automatically called when the server starts. [ADMIN ONLY]'})
+    @ApiOperation({summary: 'Add products [ADMIN ONLY]', description: 'Add products to the database. Automatically called when the server starts.'})
     async addProducts() {
         return await this.productsService.addProduct();
     }

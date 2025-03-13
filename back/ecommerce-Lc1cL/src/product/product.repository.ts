@@ -67,7 +67,7 @@ export class ProductRepository {
         const category = categories.find(
           (category) => category.name === element.category,
         );
-
+  
         if (category) {
           const newProduct = new Product();
           newProduct.name = element.name;
@@ -76,7 +76,7 @@ export class ProductRepository {
           newProduct.imgUrl = element.imgUrl;
           newProduct.stock = element.stock;
           newProduct.category = category;
-
+  
           await this.productRepository
             .createQueryBuilder()
             .insert()
@@ -84,19 +84,22 @@ export class ProductRepository {
             .values(newProduct)
             .orUpdate(['description', 'price', 'imgUrl', 'stock'], ['name'])
             .execute();
-          return 'Product(s) added successfully';
+  
+          console.log(`Product added: ${element.name}`);
         } else {
           console.error(
             `Category ${element.category} not found for product ${element.name}`,
           );
         }
       }
-      return 'Product(s) added successfully';
+      console.log('All products added successfully');
+      return 'All products added successfully';
     } catch (error) {
       console.error(`Error adding product: ${error.message}`, error);
       throw new InternalServerErrorException('Failed to add product');
     }
   }
+  
 
   async updateProduct(id: string, product: Partial<Product>) {
     try {

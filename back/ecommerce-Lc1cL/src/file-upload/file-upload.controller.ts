@@ -10,7 +10,6 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Product } from 'src/entities/products.entity';
 import { FileUploadService } from './file-upload.service';
 import { Auth2Guard } from 'src/guards/auth2.guard';
 import {
@@ -21,6 +20,9 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { RolesGuard } from 'src/guards/roles.guard';
+import { Role } from 'src/auth/roles.enum';
+import { Roles } from 'src/decorators/roles.decorator';
 
 @ApiTags('Files')
 @Controller('files')
@@ -28,7 +30,7 @@ export class FileUploadController {
   constructor(private readonly fileUploadService: FileUploadService) {}
 
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Upload image' })
+  @ApiOperation({ summary: 'Upload image [ADMIN ONLY]' })
   @ApiParam({ name: 'id', type: String, description: 'Product id' })
   @ApiBody({
     schema: {
@@ -45,7 +47,8 @@ export class FileUploadController {
   })
   @ApiConsumes('multipart/form-data')
   @Post('uploadImage/:id')
-  @UseGuards(Auth2Guard)
+  @Roles(Role.Admin)
+  @UseGuards(Auth2Guard, RolesGuard)
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
     @Param('id') productId: string,

@@ -39,7 +39,15 @@ export class AppModule implements OnModuleInit {
   }
   
   async onModuleInit() {
-      await this.categoriesRepository.addCategories()
-      await this.productRepository.addProduct();
+      await this.addCategories()
+      await this.addProducts();
+  }
+
+  async addProducts(){
+    await this.productRepository.addProduct();
+  }
+
+  async addCategories(){
+    await this.categoriesRepository.addCategories()
   }
 }
