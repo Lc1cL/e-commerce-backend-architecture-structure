@@ -115,7 +115,7 @@ Todos los endpoints están documentados en Swagger, pero aquí tienes un resumen
 
 ## 🚀 Despliegue
 El backend está desplegado y disponible en el siguiente enlace:
-[**🌍 Enlace al Deploy**]([(https://e-commerce-backend-architecture-production.up.railway.app/api#/)])
+[**🌍 Enlace al Deploy**](https://e-commerce-backend-architecture-production.up.railway.app/api#/)
 
 Puedes probarlo directamente desde **Swagger** en el mismo enlace.
 
